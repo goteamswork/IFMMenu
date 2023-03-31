@@ -274,7 +274,13 @@ typedef NS_ENUM(NSInteger, IFMMenuViewArrowDirection) {
         
         [button setImage:menuItem.image forState:UIControlStateNormal];
         [button addTarget:self action:@selector(menuItemClick:) forControlEvents:UIControlEventTouchUpInside];
-        [button setBackgroundImage:[self createImageWithColor:BlackForMenuHL] forState:UIControlStateHighlighted];
+        
+        if (_menu.menuBackgroundStyle == IFMMenuBackgroundStyleDark) {
+            [button setBackgroundImage:[self createImageWithColor:BlackForMenuHL] forState:UIControlStateHighlighted];
+        }else if(_menu.menuBackgroundStyle == IFMMenuBackgroundStyleLight){
+            [button setBackgroundImage:[self createImageWithColor:WhiteForMenuHL] forState:UIControlStateHighlighted];
+        }
+        
         [contentView addSubview:button];
         
         //画分割线
